@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
 # Copyright (C) 2025 Vitaly Karpinsky (realquaker@gmail.com)
 
-PKGS="curl gpg software-properties-common";
+PKGS="curl gpg software-properties-common snapd";
 
 echo -e "This script will install Terraform and Ansible on this Ubuntu host.";
 echo -e "No other Linux distributions were tested yet."
@@ -33,8 +33,16 @@ InstallTerraform() {
     apt update; apt install -y terraform;"
 }
 
+InstallAWScli() {
+    sudo sh -c "\
+    snap refresh;
+    snap install aws-cli --classic;
+    snap install amazon-ssm-agent --classic;"
+}
+
 InstallTools;
 InstallAnsible;
 InstallTerraform;
+InstallAWScli;
 
 # End.

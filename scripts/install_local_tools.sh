@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
+# SPDX-FileCopyrightText: 2025 Vitaly Karpinsky <realquaker@gmail.com>
 # SPDX-License-Identifier: GPL-2.0-or-later
-# Copyright (C) 2025 Vitaly Karpinsky (realquaker@gmail.com)
 
 PKGS="curl gpg software-properties-common snapd";
 

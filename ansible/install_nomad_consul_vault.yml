@@ -1,0 +1,93 @@
+---
+- name: Install Nomad, Consul, and Vault on all nodes
+  hosts: all
+  become: true
+  tasks:
+    - name: Install dependencies
+      apt:
+        name:
+          - unzip
+          - curl
+          - gnupg
+        state: present
+        update_cache: yes
+
+    - name: Add HashiCorp repository
+      apt_key:
+        url: https://apt.releases.hashicorp.com/gpg
+        state: present
+
+    - name: Add HashiCorp APT repository
+      apt_repository:
+        repo: "deb [arch=amd64] https://apt.releases.hashicorp.com stable main"
+        state: present
+
+    - name: Install Nomad, Consul and Vault
+      apt:
+        name:
+          - nomad
+          - consul
+          - vault
+        state: present
+
+- name: Configure and start Nomad, Consul, and Vault
+  hosts: all
+  become: true
+  tasks:
+    - name: Configure Consul as a server
+      template:
+        src: "consul-server.hcl.j2"
+        dest: "/etc/consul.d/consul.hcl"
+      notify:
+        - restart consul
+
+    - name: Configure Nomad as a server
+      template:
+        src: "nomad-server.hcl.j2"
+        dest: "/etc/nomad.d/nomad.hcl"
+      notify:
+        - restart nomad
+
+    - name: Configure Vault as a server
+      template:
+        src: "vault-server.hcl.j2"
+        dest: "/etc/vault.d/vault.hcl"
+      notify:
+        - restart vault
+
+- name: Start services
+  hosts: all
+  become: true
+  tasks:
+    - name: Start Consul service
+      systemd:
+        name: consul
+        state: started
+        enabled: true
+
+    - name: Start Nomad service
+      systemd:
+        name: nomad
+        state: started
+        enabled: true
+
+    - name: Start Vault service
+      systemd:
+        name: vault
+        state: started
+        enabled: true
+
+- name: Wait for Vault to initialize
+  hosts: vault
+  become: true
+  tasks:
+    - name: Wait for Vault to be ready
+      uri:
+        url: "http://127.0.0.1:8200/v1/sys/health"
+        status_code: 200
+        method: GET
+        register: result
+        retries: 10
+        delay: 10
+      until: result.status == 200
+

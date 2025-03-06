@@ -36,8 +36,7 @@ InstallTerraform() {
 InstallAWScli() {
     sudo sh -c "\
     snap refresh;
-    snap install aws-cli --classic;
-    snap install amazon-ssm-agent --classic;"
+    snap install aws-cli --classic;"
 }
 
 InstallTools;

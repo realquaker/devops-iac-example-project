@@ -1,0 +1,9 @@
+datacenter = "dc1"
+data_dir = "/opt/nomad/data"
+bind_addr = "{{ ansible_host }}"
+server = true
+bootstrap_expect = 3
+retry_join = ["{{ hostvars['node1']['ansible_host'] }}", "{{ hostvars['node2']['ansible_host'] }}", "{{ hostvars['node3']['ansible_host'] }}"]
+consul = {
+  address = "127.0.0.1:8500"
+}

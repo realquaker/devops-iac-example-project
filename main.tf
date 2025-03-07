@@ -11,10 +11,10 @@ module "resources-onprem" {
   vpc_id = module.resources-onprem.vpc_id
 }
 
-#module "resources-cloud" {
-#  source = "./resources-cloud"
-#  vpc_id = module.network-resources.vpc_id
-#}s
+module "resources-cloud" {
+  source = "./resources-cloud"
+  vpc_id = module.resources-cloud.vpc_id
+}
 
 #module "ec2-resources" {
 #  source = "./ec2-resources"

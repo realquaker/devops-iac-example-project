@@ -3,6 +3,7 @@
 
 locals {
   instance_type   = terraform.workspace == "prod" ? "t2.large" : "t2.small"
+  count           = terraform.workspace == "prod" ? 5 : 3
   ansible_env     = "ANSIBLE_HOST_KEY_CHECKING=False"
   playbook        = "playbook.yml"
   inventory       = "hosts.cfg"
@@ -119,6 +120,7 @@ resource "aws_security_group" "cluster_access" {
 }
 
 resource "aws_instance" "cluster" {
+  count             = "${local.count}"
   ami               = "ami-03250b0e01c28d196"
   instance_type     = local.instance_type
   key_name          = "UserPublicKey"
@@ -127,18 +129,20 @@ resource "aws_instance" "cluster" {
   security_groups   = ["${aws_security_group.cluster_access.id}"]
 
   tags = {
-     Name = format("%s_%s", "JENKINS", terraform.workspace)
+     Name = format("%s_%s_%s", "JENKINS", count.index + 1, terraform.workspace)
   }
 }
 
 resource "aws_eip_association" "cluster" {
-  instance_id   = aws_instance.cluster.id
-  allocation_id = aws_eip.cluster.id
+  count     = "${local.count}"
+  instance_id   = "${element(aws_instance.cluster.*.id, count.index)}"
+  allocation_id = "${element(aws_eip.cluster.*.id, count.index)}"
 }
 
 resource "aws_eip" "cluster" {
+  count     = "${local.count}"
   domain    = "vpc"
-  instance  = aws_instance.cluster.id
+  instance  = "${element(aws_instance.cluster.*.id, count.index)}"
 }
 
 resource "local_file" "cluster_hosts_cfg" {
@@ -153,7 +157,7 @@ resource "local_file" "cluster_hosts_cfg" {
 
 resource "null_resource" "run_ansible_playbook" {
   provisioner "local-exec" {
-    command     = "until nc -zv ${aws_eip_association.cluster.0.public_ip} 22; do echo 'Waiting for SSH to be available...'; sleep 5; done"
+    command     = "until nc -zv ${aws_eip_association.cluster.*.public_ip} 22; do echo 'Waiting for SSH to be available...'; sleep 5; done"
     working_dir = path.module
   }
   provisioner "local-exec" {

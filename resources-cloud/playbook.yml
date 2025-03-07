@@ -1,6 +1,6 @@
 ---
 - name: Install Nomad, Consul, and Vault on all nodes
-  hosts: all
+  hosts: cluster
   become: true
   tasks:
     - name: Install dependencies
@@ -31,7 +31,7 @@
         state: present
 
 - name: Configure and start Nomad, Consul, and Vault
-  hosts: all
+  hosts: cluster
   become: true
   tasks:
     - name: Configure Consul as a server
@@ -56,7 +56,7 @@
         - restart vault
 
 - name: Start services
-  hosts: all
+  hosts: cluster
   become: true
   tasks:
     - name: Start Consul service

@@ -1,2 +1,0 @@
-ansible-playbook -i inventory.ini install_nomad_consul_vault.yml
-ansible-playbook -i inventory.ini install_jenkins_and_docker.yml

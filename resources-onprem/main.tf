@@ -2,7 +2,11 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
 
 locals {
-  instance_type = terraform.workspace == "prod" ? "t2.large" : "t2.small"
+  instance_type   = terraform.workspace == "prod" ? "t2.large" : "t2.small"
+  ansible_env     = "ANSIBLE_HOST_KEY_CHECKING=False"
+  playbook        = "playbook.yml"
+  inventory       = "hosts.cfg"
+  private_key     = "${var.ssh_private_key}"
 }
 
 resource "aws_default_vpc" "onprem_vpc" {
@@ -11,6 +15,7 @@ resource "aws_default_vpc" "onprem_vpc" {
   }
 }
 
+# not needed for default vpc
 #resource "aws_internet_gateway" "onprem_vpc_igw" {
 #  vpc_id = aws_default_vpc.onprem_vpc.id
 
@@ -62,6 +67,7 @@ resource "aws_network_acl_association" "onprem_public_subnet_nacl_association" {
   subnet_id      = aws_subnet.onprem_public_subnet.id
 }
 
+# not needed for default vpc
 #resource "aws_route_table" "onprem_public_subnet_default_rt" {
 #  vpc_id = aws_default_vpc.onprem_vpc.id
 
@@ -93,8 +99,8 @@ resource "aws_security_group" "jenkins_access" {
   }
 
   ingress {
-    from_port   = 80
-    to_port     = 80
+    from_port   = "8080"
+    to_port     = "8080"
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -120,9 +126,35 @@ resource "aws_instance" "jenkins" {
   }
 }
 
-resource "aws_eip" "eip_jenkins" {
+resource "aws_eip_association" "jenkins" {
+  instance_id   = aws_instance.jenkins.id
+  allocation_id = aws_eip.jenkins.id
+}
+
+resource "aws_eip" "jenkins" {
   domain    = "vpc"
   instance  = aws_instance.jenkins.id
+}
+
+resource "local_file" "jenkins_hosts_cfg" {
+  content = templatefile("${path.module}/hosts.tpl",
+    {
+      jenkins = aws_eip_association.jenkins.*.public_ip
+    }
+  )
+  filename        = "${path.module}/hosts.cfg"
+  file_permission = "0644"
+}
+
+resource "null_resource" "run_ansible_playbook" {
+  provisioner "local-exec" {
+    command     = "until nc -zv ${aws_eip_association.jenkins.public_ip} 22; do echo 'Waiting for SSH to be available...'; sleep 5; done"
+    working_dir = path.module
+  }
+  provisioner "local-exec" {
+    command     = "${local.ansible_env} ansible-playbook -u ubuntu -i ${local.inventory} --private-key ${local.private_key} ${local.playbook}"
+    working_dir = path.module
+  }
 }
 
 # End.

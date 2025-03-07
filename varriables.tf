@@ -6,3 +6,11 @@ variable "ssh_public_key" {
  description = "Path to the public ssh key"
  default     = "~/.ssh/id_rsa.pub"
 }
+
+variable "ssh_private_key" {
+ type        = string
+ description = "Path to the private ssh key"
+ default     = "~/.ssh/id_rsa"
+}
+
+# End.

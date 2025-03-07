@@ -3,7 +3,7 @@
 
 resource "aws_key_pair" "tf_key" {
   key_name   = "UserPublicKey"
-  public_key = file("~/.ssh/id_rsa.pub")
+  public_key = file("${var.ssh_public_key}")
 }
 
 module "resources-onprem" {

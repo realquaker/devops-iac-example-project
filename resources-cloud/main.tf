@@ -11,6 +11,7 @@ locals {
 }
 
 resource "aws_vpc" "cloud_vpc" {
+  cidr_block = "172.16.0.0/16"
   tags = {
     Name = format("%s_%s", "CLOUD_VPC", terraform.workspace)
   }
@@ -26,8 +27,8 @@ resource "aws_internet_gateway" "cloud_vpc_igw" {
 
 resource "aws_subnet" "cloud_public_subnet" {
   vpc_id                  = aws_vpc.cloud_vpc.id
-  cidr_block              = "172.31.144.0/20"
-  availability_zone       = "eu-central-1b"
+  cidr_block              = "172.16.128.0/20"
+  availability_zone       = "eu-central-1c"
   map_public_ip_on_launch = true
 
   tags = {
@@ -87,8 +88,8 @@ resource "aws_route_table_association" "cloud_public_subnet_default_rt_associati
 
 resource "aws_security_group" "cluster_access" {
   vpc_id      = aws_vpc.cloud_vpc.id
-  description = "HTTP and SSH Jenkins Access"
-  name        = format("%s_%s", "JENKINS_ACCESS", terraform.workspace)
+  description = "HTTP, HTTPS and SSH Cluster Access"
+  name        = format("%s_%s", "CLUSTER_ACCESS", terraform.workspace)
 
   ingress {
     from_port   = "22"
@@ -129,7 +130,7 @@ resource "aws_instance" "cluster" {
   security_groups   = ["${aws_security_group.cluster_access.id}"]
 
   tags = {
-     Name = format("%s_%s_%s", "JENKINS", count.index + 1, terraform.workspace)
+     Name = format("%s_%s_%s", "CLUSTER", count.index + 1, terraform.workspace)
   }
 }
 
@@ -156,10 +157,16 @@ resource "local_file" "cluster_hosts_cfg" {
 }
 
 resource "null_resource" "run_ansible_playbook" {
-  provisioner "local-exec" {
-    command     = "until nc -zv ${aws_eip_association.cluster.*.public_ip} 22; do echo 'Waiting for SSH to be available...'; sleep 5; done"
+
+    provisioner "local-exec" {
+    command     = (
+      aws_eip_association.cluster.*.public_ip ?
+      "command-to-run" :
+      "until nc -zv '${aws_eip_association.cluster.*.public_ip},' 22; do echo 'Waiting for SSH to be available...'; sleep 5; done"
+    )
     working_dir = path.module
   }
+
   provisioner "local-exec" {
     command     = "${local.ansible_env} ansible-playbook -u ubuntu -i ${local.inventory} --private-key ${local.private_key} ${local.playbook}"
     working_dir = path.module

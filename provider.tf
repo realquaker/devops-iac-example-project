@@ -7,12 +7,19 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 5.89"
     }
+    local = {
+      source  = "hashicorp/local"
+      version = "~> 2.5.2"
+    }
+    null = {
+      source  = "hashicorp/null"
+      version = "~> 3.2.3"
+    }
   }
 }
 
 provider "aws" {
     profile                     = "default"
-#   region                      = "eu-central-1"
     shared_config_files         = ["$HOME/.aws/config"]
     shared_credentials_files    = ["$HOME/.aws/credentials"]
 

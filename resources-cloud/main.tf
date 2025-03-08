@@ -2,6 +2,8 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
 
 locals {
+  # Using Workspaces is just as an example of how to separate envirinments.
+  # This feature is not fully implemented.
   instance_type   = terraform.workspace == "prod" ? "t2.large" : "t2.small"
   count           = terraform.workspace == "prod" ? 5 : 3
   ansible_env     = "ANSIBLE_HOST_KEY_CHECKING=False"
@@ -158,15 +160,8 @@ resource "local_file" "cluster_hosts_cfg" {
 
 resource "null_resource" "run_ansible_playbook" {
 
-    provisioner "local-exec" {
-    command     = (
-      aws_eip_association.cluster.*.public_ip ?
-      "command-to-run" :
-      "until nc -zv '${aws_eip_association.cluster.*.public_ip},' 22; do echo 'Waiting for SSH to be available...'; sleep 5; done"
-    )
-    working_dir = path.module
-  }
-
+  depends_on = [aws_instance.cluster, local_file.cluster_hosts_cfg]
+  
   provisioner "local-exec" {
     command     = "${local.ansible_env} ansible-playbook -u ubuntu -i ${local.inventory} --private-key ${local.private_key} ${local.playbook}"
     working_dir = path.module

@@ -1,18 +1,32 @@
 ---
-- name: Install Jenkins on the host
+- name: Install Jenkins and Docker
   hosts: jenkins
+  gather_facts: no
   become: true
   tasks:
-    - name: Install required dependencies for Jenkins
+
+    - name: Wait 300 seconds, but only start checking after 30 seconds
+      ansible.builtin.wait_for_connection:
+        connect_timeout: 5
+        delay: 30
+        sleep: 10
+        timeout: 300
+
+    - name: Install deps for Jenkins and Docker
       apt:
         name:
+          - curl
+          - unzip
+          - gnupg
+          - lsb-release
           - fontconfig
           - openjdk-21-jdk
-          - gnupg
+          - apt-transport-https
+          - ca-certificates
         state: present
-        update_cache: yes
+        update_cache: true
 
-    - name: Add Jenkins repository key
+    - name: Add Jenkins Repo GPG key
       apt_key:
         url: https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
         state: present
@@ -33,22 +47,7 @@
         state: started
         enabled: true
 
-- name: Install Docker on the host
-  hosts: jenkins
-  become: true
-  tasks:
-    - name: Install required dependencies for Docker
-      apt:
-        name:
-          - apt-transport-https
-          - ca-certificates
-          - curl
-          - gnupg
-          - lsb-release
-        state: present
-        update_cache: yes
-
-    - name: Add Docker GPG key
+    - name: Add Docker Repo GPG key
       apt_key:
         url: https://download.docker.com/linux/ubuntu/gpg
         state: present

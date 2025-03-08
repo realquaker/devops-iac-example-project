@@ -2,6 +2,8 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
 
 locals {
+  # Using Workspaces is just as an example of how to separate envirinments.
+  # This feature is not fully implemented.
   instance_type   = terraform.workspace == "prod" ? "t2.large" : "t2.small"
   ansible_env     = "ANSIBLE_HOST_KEY_CHECKING=False"
   playbook        = "playbook.yml"
@@ -9,6 +11,7 @@ locals {
   private_key     = "${var.ssh_private_key}"
 }
 
+# We will use AWS Default VPC as On Prem Environment
 resource "aws_default_vpc" "onprem_vpc" {
   tags = {
     Name = format("%s_%s", "ONPREM_VPC", terraform.workspace)
@@ -147,10 +150,9 @@ resource "local_file" "jenkins_hosts_cfg" {
 }
 
 resource "null_resource" "run_ansible_playbook" {
-  provisioner "local-exec" {
-    command     = "until nc -zv ${aws_eip_association.jenkins.public_ip} 22; do echo 'Waiting for SSH to be available...'; sleep 5; done"
-    working_dir = path.module
-  }
+  
+  depends_on = [aws_instance.jenkins, local_file.jenkins_hosts_cfg]
+
   provisioner "local-exec" {
     command     = "${local.ansible_env} ansible-playbook -u ubuntu -i ${local.inventory} --private-key ${local.private_key} ${local.playbook}"
     working_dir = path.module

@@ -1,39 +1,84 @@
 ---
-- name: Install Nomad, Consul, and Vault on all nodes
+- name: Install Nomad, Consul, Vault and Docker on cluster nodes
   hosts: cluster
+  gather_facts: no
   become: true
   tasks:
-    - name: Install dependencies
+
+    - name: Wait 600 seconds, but only start checking after 30 seconds
+      ansible.builtin.wait_for_connection:
+        connect_timeout: 5
+        delay: 30
+        sleep: 10
+        timeout: 300
+
+    - name: Install dependencies and some optional apps
       apt:
         name:
-          - unzip
           - curl
+          - unzip
           - gnupg
+          - lsb-release
+          - fontconfig
+          - openjdk-21-jdk
+          - apt-transport-https
+          - ca-certificates
         state: present
         update_cache: yes
 
-    - name: Add HashiCorp repository
+    - name: Add HashiCorp Repo GPG Key
       apt_key:
         url: https://apt.releases.hashicorp.com/gpg
         state: present
 
-    - name: Add HashiCorp APT repository
+    - name: Add HashiCorp Repo
       apt_repository:
         repo: "deb [arch=amd64] https://apt.releases.hashicorp.com stable main"
         state: present
 
-    - name: Install Nomad, Consul and Vault
+    - name: Add Docker Repo GPG key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add Docker Repo
+      apt_repository:
+        repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu noble stable"
+        state: present
+
+    - name: Install Nomad, Consul, Vault and Docker
       apt:
         name:
           - nomad
           - consul
           - vault
+          - docker-ce
         state: present
 
-- name: Configure and start Nomad, Consul, and Vault
-  hosts: cluster
-  become: true
-  tasks:
+    - name: Ensure Docker is enabled and running
+      systemd:
+        name: docker
+        state: started
+        enabled: true
+
+    - name: Ensure Consul is started and enabled
+      systemd:
+        name: consul
+        state: started
+        enabled: true
+
+    - name: Ensure Nomad is started and enabled
+      systemd:
+        name: nomad
+        state: started
+        enabled: true
+
+    - name: Ensure Vault is started and enabled
+      systemd:
+        name: vault
+        state: started
+        enabled: true
+
     - name: Configure Consul as a server
       template:
         src: "consul-server.hcl.j2"
@@ -55,32 +100,6 @@
       notify:
         - restart vault
 
-- name: Start services
-  hosts: cluster
-  become: true
-  tasks:
-    - name: Start Consul service
-      systemd:
-        name: consul
-        state: started
-        enabled: true
-
-    - name: Start Nomad service
-      systemd:
-        name: nomad
-        state: started
-        enabled: true
-
-    - name: Start Vault service
-      systemd:
-        name: vault
-        state: started
-        enabled: true
-
-- name: Wait for Vault to initialize
-  hosts: vault
-  become: true
-  tasks:
     - name: Wait for Vault to be ready
       uri:
         url: "http://127.0.0.1:8200/v1/sys/health"
@@ -90,4 +109,3 @@
         retries: 10
         delay: 10
       until: result.status == 200
-

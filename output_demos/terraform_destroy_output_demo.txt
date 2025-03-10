@@ -1,0 +1,1293 @@
+data.aws_caller_identity.current: Reading...
+aws_key_pair.tf_key: Refreshing state... [id=UserPublicKey]
+module.resources-onprem.aws_default_vpc.default: Refreshing state... [id=vpc-077c402eb2331b90b]
+aws_kms_key.vault: Refreshing state... [id=a6f77c16-1e47-4e96-bf8c-26dc8c4df1ea]
+module.resources-onprem.aws_vpc.onprem_vpc: Refreshing state... [id=vpc-0ae17710076dc5a26]
+module.resources-cloud.aws_vpc.cloud_vpc: Refreshing state... [id=vpc-0cb87ef7bdac04533]
+data.aws_caller_identity.current: Read complete after 0s [id=<hidden>]
+module.resources-onprem.aws_internet_gateway.onprem_vpc_igw: Refreshing state... [id=igw-00471161cc7c02d0e]
+module.resources-onprem.aws_subnet.onprem_public_subnet: Refreshing state... [id=subnet-04c26aaecbf98a0df]
+module.resources-onprem.aws_security_group.jenkins_access: Refreshing state... [id=sg-04ee6df1559d631c2]
+module.resources-cloud.aws_subnet.cloud_public_subnet: Refreshing state... [id=subnet-0710ae8c4638514d1]
+module.resources-cloud.aws_internet_gateway.cloud_vpc_igw: Refreshing state... [id=igw-084ff74df2a318e84]
+aws_vpc_peering_connection.onprem_2_cloud_vpc_peering: Refreshing state... [id=pcx-0ffd1c1c56440e611]
+module.resources-cloud.aws_security_group.cluster_access: Refreshing state... [id=sg-082a782b6a3fc5109]
+module.resources-onprem.aws_route_table.onprem_rt: Refreshing state... [id=rtb-06819f881ed2bc07d]
+module.resources-cloud.aws_route_table.cloud_rt: Refreshing state... [id=rtb-010a95f2077b0cfb6]
+module.resources-onprem.aws_network_acl.onprem_public_subnet_nacl: Refreshing state... [id=acl-0e17663f0ae11927e]
+module.resources-onprem.aws_instance.jenkins: Refreshing state... [id=i-085b2027992122d6f]
+module.resources-cloud.aws_network_acl.cloud_public_subnet_nacl: Refreshing state... [id=acl-055b583b8a8e2fb1b]
+module.resources-cloud.aws_route_table_association.cloud_public_subnet_default_rt_association: Refreshing state... [id=rtbassoc-087f64b5ee3298524]
+aws_route.route_2_onprem: Refreshing state... [id=r-rtb-010a95f2077b0cfb64073482484]
+module.resources-cloud.aws_instance.cluster[0]: Refreshing state... [id=i-0adb5261468883062]
+module.resources-cloud.aws_instance.cluster[1]: Refreshing state... [id=i-01bbb6d1ac1c07a36]
+module.resources-cloud.aws_instance.cluster[2]: Refreshing state... [id=i-089125ca29c163dfd]
+module.resources-onprem.aws_network_acl_association.onprem_public_subnet_nacl_association: Refreshing state... [id=aclassoc-0421ffdc30ed43a11]
+module.resources-onprem.aws_route_table_association.onprem_public_subnet_default_rt_association: Refreshing state... [id=rtbassoc-00b82b7e367749bd0]
+aws_route.route_2_cloud: Refreshing state... [id=r-rtb-06819f881ed2bc07d3246677288]
+module.resources-cloud.aws_network_acl_association.cloud_public_subnet_nacl_association: Refreshing state... [id=aclassoc-08183fff7290b8fd2]
+module.resources-onprem.aws_eip.jenkins: Refreshing state... [id=eipalloc-0e8d81c0e27867284]
+module.resources-cloud.aws_eip.cluster[2]: Refreshing state... [id=eipalloc-0667e1349983b7c57]
+module.resources-cloud.aws_eip.cluster[0]: Refreshing state... [id=eipalloc-0ff8542d2d044ee94]
+module.resources-cloud.aws_eip.cluster[1]: Refreshing state... [id=eipalloc-0918035574d712a58]
+module.resources-onprem.aws_eip_association.jenkins: Refreshing state... [id=eipassoc-09fa7df9b2622e57f]
+module.resources-cloud.aws_eip_association.cluster[2]: Refreshing state... [id=eipassoc-072ec80b5dfab9a72]
+module.resources-cloud.aws_eip_association.cluster[1]: Refreshing state... [id=eipassoc-05e300e22bfcfd14e]
+module.resources-cloud.aws_eip_association.cluster[0]: Refreshing state... [id=eipassoc-0d965fb543a464d7e]
+module.resources-onprem.local_file.jenkins_hosts_cfg: Refreshing state... [id=922ec2d751678cb08e2f50ed6191141e0b11df91]
+module.resources-onprem.null_resource.run_ansible_playbook: Refreshing state... [id=7813338176761783491]
+module.resources-cloud.local_file.cluster_hosts_cfg: Refreshing state... [id=aa2fd69491da1253590fd5f9e50626485d2be923]
+module.resources-cloud.null_resource.run_ansible_playbook: Refreshing state... [id=1774601183455357234]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  - destroy
+
+Terraform will perform the following actions:
+
+  # aws_key_pair.tf_key will be destroyed
+  - resource "aws_key_pair" "tf_key" {
+      - arn             = "arn:aws:ec2:eu-central-1:<hidden>:key-pair/UserPublicKey" -> null
+      - fingerprint     = "ac:27:c5:96:5f:d3:3e:52:e5:7b:83:4a:46:2b:99:1c" -> null
+      - id              = "UserPublicKey" -> null
+      - key_name        = "UserPublicKey" -> null
+      - key_pair_id     = "key-0959e6556d91cea2e" -> null
+      - key_type        = "rsa" -> null
+      - public_key      = "ssh-rsa <long_key_here> user@host" -> null
+      - tags            = {} -> null
+      - tags_all        = {} -> null
+        # (1 unchanged attribute hidden)
+    }
+
+  # aws_kms_key.vault will be destroyed
+  - resource "aws_kms_key" "vault" {
+      - arn                                = "arn:aws:kms:eu-central-1:<hidden>:key/a6f77c16-1e47-4e96-bf8c-26dc8c4df1ea" -> null
+      - bypass_policy_lockout_safety_check = false -> null
+      - customer_master_key_spec           = "SYMMETRIC_DEFAULT" -> null
+      - description                        = "An Vaulte KMS key" -> null
+      - enable_key_rotation                = false -> null
+      - id                                 = "a6f77c16-1e47-4e96-bf8c-26dc8c4df1ea" -> null
+      - is_enabled                         = true -> null
+      - key_id                             = "a6f77c16-1e47-4e96-bf8c-26dc8c4df1ea" -> null
+      - key_usage                          = "ENCRYPT_DECRYPT" -> null
+      - multi_region                       = false -> null
+      - policy                             = jsonencode(
+            {
+              - Id        = "key-default-1"
+              - Statement = [
+                  - {
+                      - Action    = "kms:*"
+                      - Effect    = "Allow"
+                      - Principal = {
+                          - AWS = "arn:aws:iam::<hidden>:root"
+                        }
+                      - Resource  = "*"
+                      - Sid       = "Enable IAM User Permissions"
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> null
+      - rotation_period_in_days            = 0 -> null
+      - tags                               = {} -> null
+      - tags_all                           = {} -> null
+        # (2 unchanged attributes hidden)
+    }
+
+  # aws_route.route_2_cloud will be destroyed
+  - resource "aws_route" "route_2_cloud" {
+      - destination_cidr_block      = "172.16.0.0/16" -> null
+      - id                          = "r-rtb-06819f881ed2bc07d3246677288" -> null
+      - origin                      = "CreateRoute" -> null
+      - route_table_id              = "rtb-06819f881ed2bc07d" -> null
+      - state                       = "active" -> null
+      - vpc_peering_connection_id   = "pcx-0ffd1c1c56440e611" -> null
+        # (13 unchanged attributes hidden)
+    }
+
+  # aws_route.route_2_onprem will be destroyed
+  - resource "aws_route" "route_2_onprem" {
+      - destination_cidr_block      = "172.21.0.0/16" -> null
+      - id                          = "r-rtb-010a95f2077b0cfb64073482484" -> null
+      - origin                      = "CreateRoute" -> null
+      - route_table_id              = "rtb-010a95f2077b0cfb6" -> null
+      - state                       = "active" -> null
+      - vpc_peering_connection_id   = "pcx-0ffd1c1c56440e611" -> null
+        # (13 unchanged attributes hidden)
+    }
+
+  # aws_vpc_peering_connection.onprem_2_cloud_vpc_peering will be destroyed
+  - resource "aws_vpc_peering_connection" "onprem_2_cloud_vpc_peering" {
+      - accept_status = "active" -> null
+      - auto_accept   = true -> null
+      - id            = "pcx-0ffd1c1c56440e611" -> null
+      - peer_owner_id = "<hidden>" -> null
+      - peer_region   = "eu-central-1" -> null
+      - peer_vpc_id   = "vpc-0cb87ef7bdac04533" -> null
+      - tags          = {} -> null
+      - tags_all      = {} -> null
+      - vpc_id        = "vpc-0ae17710076dc5a26" -> null
+
+      - accepter {
+          - allow_remote_vpc_dns_resolution = false -> null
+        }
+
+      - requester {
+          - allow_remote_vpc_dns_resolution = false -> null
+        }
+    }
+
+  # module.resources-cloud.aws_eip.cluster[0] will be destroyed
+  - resource "aws_eip" "cluster" {
+      - allocation_id            = "eipalloc-0ff8542d2d044ee94" -> null
+      - arn                      = "arn:aws:ec2:eu-central-1:<hidden>:elastic-ip/eipalloc-0ff8542d2d044ee94" -> null
+      - association_id           = "eipassoc-0d965fb543a464d7e" -> null
+      - domain                   = "vpc" -> null
+      - id                       = "eipalloc-0ff8542d2d044ee94" -> null
+      - instance                 = "i-0adb5261468883062" -> null
+      - network_border_group     = "eu-central-1" -> null
+      - network_interface        = "eni-07384e0d9fcf5c3a6" -> null
+      - private_dns              = "ip-172-16-0-46.eu-central-1.compute.internal" -> null
+      - private_ip               = "172.16.0.46" -> null
+      - public_dns               = "ec2-18-197-234-79.eu-central-1.compute.amazonaws.com" -> null
+      - public_ip                = "18.197.234.79" -> null
+      - public_ipv4_pool         = "amazon" -> null
+      - tags                     = {} -> null
+      - tags_all                 = {} -> null
+      - vpc                      = true -> null
+        # (4 unchanged attributes hidden)
+    }
+
+  # module.resources-cloud.aws_eip.cluster[1] will be destroyed
+  - resource "aws_eip" "cluster" {
+      - allocation_id            = "eipalloc-0918035574d712a58" -> null
+      - arn                      = "arn:aws:ec2:eu-central-1:<hidden>:elastic-ip/eipalloc-0918035574d712a58" -> null
+      - association_id           = "eipassoc-05e300e22bfcfd14e" -> null
+      - domain                   = "vpc" -> null
+      - id                       = "eipalloc-0918035574d712a58" -> null
+      - instance                 = "i-01bbb6d1ac1c07a36" -> null
+      - network_border_group     = "eu-central-1" -> null
+      - network_interface        = "eni-04333afd5ace55f46" -> null
+      - private_dns              = "ip-172-16-0-169.eu-central-1.compute.internal" -> null
+      - private_ip               = "172.16.0.169" -> null
+      - public_dns               = "ec2-3-68-36-40.eu-central-1.compute.amazonaws.com" -> null
+      - public_ip                = "3.68.36.40" -> null
+      - public_ipv4_pool         = "amazon" -> null
+      - tags                     = {} -> null
+      - tags_all                 = {} -> null
+      - vpc                      = true -> null
+        # (4 unchanged attributes hidden)
+    }
+
+  # module.resources-cloud.aws_eip.cluster[2] will be destroyed
+  - resource "aws_eip" "cluster" {
+      - allocation_id            = "eipalloc-0667e1349983b7c57" -> null
+      - arn                      = "arn:aws:ec2:eu-central-1:<hidden>:elastic-ip/eipalloc-0667e1349983b7c57" -> null
+      - association_id           = "eipassoc-072ec80b5dfab9a72" -> null
+      - domain                   = "vpc" -> null
+      - id                       = "eipalloc-0667e1349983b7c57" -> null
+      - instance                 = "i-089125ca29c163dfd" -> null
+      - network_border_group     = "eu-central-1" -> null
+      - network_interface        = "eni-0a22e2eb3980ea382" -> null
+      - private_dns              = "ip-172-16-0-88.eu-central-1.compute.internal" -> null
+      - private_ip               = "172.16.0.88" -> null
+      - public_dns               = "ec2-3-76-168-93.eu-central-1.compute.amazonaws.com" -> null
+      - public_ip                = "3.76.168.93" -> null
+      - public_ipv4_pool         = "amazon" -> null
+      - tags                     = {} -> null
+      - tags_all                 = {} -> null
+      - vpc                      = true -> null
+        # (4 unchanged attributes hidden)
+    }
+
+  # module.resources-cloud.aws_eip_association.cluster[0] will be destroyed
+  - resource "aws_eip_association" "cluster" {
+      - allocation_id        = "eipalloc-0ff8542d2d044ee94" -> null
+      - id                   = "eipassoc-0d965fb543a464d7e" -> null
+      - instance_id          = "i-0adb5261468883062" -> null
+      - network_interface_id = "eni-07384e0d9fcf5c3a6" -> null
+      - private_ip_address   = "172.16.0.46" -> null
+      - public_ip            = "18.197.234.79" -> null
+    }
+
+  # module.resources-cloud.aws_eip_association.cluster[1] will be destroyed
+  - resource "aws_eip_association" "cluster" {
+      - allocation_id        = "eipalloc-0918035574d712a58" -> null
+      - id                   = "eipassoc-05e300e22bfcfd14e" -> null
+      - instance_id          = "i-01bbb6d1ac1c07a36" -> null
+      - network_interface_id = "eni-04333afd5ace55f46" -> null
+      - private_ip_address   = "172.16.0.169" -> null
+      - public_ip            = "3.68.36.40" -> null
+    }
+
+  # module.resources-cloud.aws_eip_association.cluster[2] will be destroyed
+  - resource "aws_eip_association" "cluster" {
+      - allocation_id        = "eipalloc-0667e1349983b7c57" -> null
+      - id                   = "eipassoc-072ec80b5dfab9a72" -> null
+      - instance_id          = "i-089125ca29c163dfd" -> null
+      - network_interface_id = "eni-0a22e2eb3980ea382" -> null
+      - private_ip_address   = "172.16.0.88" -> null
+      - public_ip            = "3.76.168.93" -> null
+    }
+
+  # module.resources-cloud.aws_instance.cluster[0] will be destroyed
+  - resource "aws_instance" "cluster" {
+      - ami                                  = "ami-03250b0e01c28d196" -> null
+      - arn                                  = "arn:aws:ec2:eu-central-1:<hidden>:instance/i-0adb5261468883062" -> null
+      - associate_public_ip_address          = true -> null
+      - availability_zone                    = "eu-central-1c" -> null
+      - cpu_core_count                       = 1 -> null
+      - cpu_threads_per_core                 = 1 -> null
+      - disable_api_stop                     = false -> null
+      - disable_api_termination              = false -> null
+      - ebs_optimized                        = false -> null
+      - get_password_data                    = false -> null
+      - hibernation                          = false -> null
+      - id                                   = "i-0adb5261468883062" -> null
+      - instance_initiated_shutdown_behavior = "stop" -> null
+      - instance_state                       = "running" -> null
+      - instance_type                        = "t2.small" -> null
+      - ipv6_address_count                   = 0 -> null
+      - ipv6_addresses                       = [] -> null
+      - key_name                             = "UserPublicKey" -> null
+      - monitoring                           = false -> null
+      - placement_partition_number           = 0 -> null
+      - primary_network_interface_id         = "eni-07384e0d9fcf5c3a6" -> null
+      - private_dns                          = "ip-172-16-0-46.eu-central-1.compute.internal" -> null
+      - private_ip                           = "172.16.0.46" -> null
+      - public_ip                            = "18.197.234.79" -> null
+      - secondary_private_ips                = [] -> null
+      - security_groups                      = [] -> null
+      - source_dest_check                    = true -> null
+      - subnet_id                            = "subnet-0710ae8c4638514d1" -> null
+      - tags                                 = {
+          - "Name" = "CLUSTER_1_dev"
+        } -> null
+      - tags_all                             = {
+          - "Name" = "CLUSTER_1_dev"
+        } -> null
+      - tenancy                              = "default" -> null
+      - user_data_replace_on_change          = false -> null
+      - vpc_security_group_ids               = [
+          - "sg-082a782b6a3fc5109",
+        ] -> null
+        # (8 unchanged attributes hidden)
+
+      - capacity_reservation_specification {
+          - capacity_reservation_preference = "open" -> null
+        }
+
+      - cpu_options {
+          - core_count       = 1 -> null
+          - threads_per_core = 1 -> null
+            # (1 unchanged attribute hidden)
+        }
+
+      - credit_specification {
+          - cpu_credits = "standard" -> null
+        }
+
+      - enclave_options {
+          - enabled = false -> null
+        }
+
+      - maintenance_options {
+          - auto_recovery = "default" -> null
+        }
+
+      - metadata_options {
+          - http_endpoint               = "enabled" -> null
+          - http_protocol_ipv6          = "disabled" -> null
+          - http_put_response_hop_limit = 2 -> null
+          - http_tokens                 = "required" -> null
+          - instance_metadata_tags      = "disabled" -> null
+        }
+
+      - private_dns_name_options {
+          - enable_resource_name_dns_a_record    = false -> null
+          - enable_resource_name_dns_aaaa_record = false -> null
+          - hostname_type                        = "ip-name" -> null
+        }
+
+      - root_block_device {
+          - delete_on_termination = true -> null
+          - device_name           = "/dev/sda1" -> null
+          - encrypted             = false -> null
+          - iops                  = 3000 -> null
+          - tags                  = {} -> null
+          - tags_all              = {} -> null
+          - throughput            = 125 -> null
+          - volume_id             = "vol-0bf1ab648849422c9" -> null
+          - volume_size           = 8 -> null
+          - volume_type           = "gp3" -> null
+            # (1 unchanged attribute hidden)
+        }
+    }
+
+  # module.resources-cloud.aws_instance.cluster[1] will be destroyed
+  - resource "aws_instance" "cluster" {
+      - ami                                  = "ami-03250b0e01c28d196" -> null
+      - arn                                  = "arn:aws:ec2:eu-central-1:<hidden>:instance/i-01bbb6d1ac1c07a36" -> null
+      - associate_public_ip_address          = true -> null
+      - availability_zone                    = "eu-central-1c" -> null
+      - cpu_core_count                       = 1 -> null
+      - cpu_threads_per_core                 = 1 -> null
+      - disable_api_stop                     = false -> null
+      - disable_api_termination              = false -> null
+      - ebs_optimized                        = false -> null
+      - get_password_data                    = false -> null
+      - hibernation                          = false -> null
+      - id                                   = "i-01bbb6d1ac1c07a36" -> null
+      - instance_initiated_shutdown_behavior = "stop" -> null
+      - instance_state                       = "running" -> null
+      - instance_type                        = "t2.small" -> null
+      - ipv6_address_count                   = 0 -> null
+      - ipv6_addresses                       = [] -> null
+      - key_name                             = "UserPublicKey" -> null
+      - monitoring                           = false -> null
+      - placement_partition_number           = 0 -> null
+      - primary_network_interface_id         = "eni-04333afd5ace55f46" -> null
+      - private_dns                          = "ip-172-16-0-169.eu-central-1.compute.internal" -> null
+      - private_ip                           = "172.16.0.169" -> null
+      - public_ip                            = "3.68.36.40" -> null
+      - secondary_private_ips                = [] -> null
+      - security_groups                      = [] -> null
+      - source_dest_check                    = true -> null
+      - subnet_id                            = "subnet-0710ae8c4638514d1" -> null
+      - tags                                 = {
+          - "Name" = "CLUSTER_2_dev"
+        } -> null
+      - tags_all                             = {
+          - "Name" = "CLUSTER_2_dev"
+        } -> null
+      - tenancy                              = "default" -> null
+      - user_data_replace_on_change          = false -> null
+      - vpc_security_group_ids               = [
+          - "sg-082a782b6a3fc5109",
+        ] -> null
+        # (8 unchanged attributes hidden)
+
+      - capacity_reservation_specification {
+          - capacity_reservation_preference = "open" -> null
+        }
+
+      - cpu_options {
+          - core_count       = 1 -> null
+          - threads_per_core = 1 -> null
+            # (1 unchanged attribute hidden)
+        }
+
+      - credit_specification {
+          - cpu_credits = "standard" -> null
+        }
+
+      - enclave_options {
+          - enabled = false -> null
+        }
+
+      - maintenance_options {
+          - auto_recovery = "default" -> null
+        }
+
+      - metadata_options {
+          - http_endpoint               = "enabled" -> null
+          - http_protocol_ipv6          = "disabled" -> null
+          - http_put_response_hop_limit = 2 -> null
+          - http_tokens                 = "required" -> null
+          - instance_metadata_tags      = "disabled" -> null
+        }
+
+      - private_dns_name_options {
+          - enable_resource_name_dns_a_record    = false -> null
+          - enable_resource_name_dns_aaaa_record = false -> null
+          - hostname_type                        = "ip-name" -> null
+        }
+
+      - root_block_device {
+          - delete_on_termination = true -> null
+          - device_name           = "/dev/sda1" -> null
+          - encrypted             = false -> null
+          - iops                  = 3000 -> null
+          - tags                  = {} -> null
+          - tags_all              = {} -> null
+          - throughput            = 125 -> null
+          - volume_id             = "vol-018d1635ee2d43e31" -> null
+          - volume_size           = 8 -> null
+          - volume_type           = "gp3" -> null
+            # (1 unchanged attribute hidden)
+        }
+    }
+
+  # module.resources-cloud.aws_instance.cluster[2] will be destroyed
+  - resource "aws_instance" "cluster" {
+      - ami                                  = "ami-03250b0e01c28d196" -> null
+      - arn                                  = "arn:aws:ec2:eu-central-1:<hidden>:instance/i-089125ca29c163dfd" -> null
+      - associate_public_ip_address          = true -> null
+      - availability_zone                    = "eu-central-1c" -> null
+      - cpu_core_count                       = 1 -> null
+      - cpu_threads_per_core                 = 1 -> null
+      - disable_api_stop                     = false -> null
+      - disable_api_termination              = false -> null
+      - ebs_optimized                        = false -> null
+      - get_password_data                    = false -> null
+      - hibernation                          = false -> null
+      - id                                   = "i-089125ca29c163dfd" -> null
+      - instance_initiated_shutdown_behavior = "stop" -> null
+      - instance_state                       = "running" -> null
+      - instance_type                        = "t2.small" -> null
+      - ipv6_address_count                   = 0 -> null
+      - ipv6_addresses                       = [] -> null
+      - key_name                             = "UserPublicKey" -> null
+      - monitoring                           = false -> null
+      - placement_partition_number           = 0 -> null
+      - primary_network_interface_id         = "eni-0a22e2eb3980ea382" -> null
+      - private_dns                          = "ip-172-16-0-88.eu-central-1.compute.internal" -> null
+      - private_ip                           = "172.16.0.88" -> null
+      - public_ip                            = "3.76.168.93" -> null
+      - secondary_private_ips                = [] -> null
+      - security_groups                      = [] -> null
+      - source_dest_check                    = true -> null
+      - subnet_id                            = "subnet-0710ae8c4638514d1" -> null
+      - tags                                 = {
+          - "Name" = "CLUSTER_3_dev"
+        } -> null
+      - tags_all                             = {
+          - "Name" = "CLUSTER_3_dev"
+        } -> null
+      - tenancy                              = "default" -> null
+      - user_data_replace_on_change          = false -> null
+      - vpc_security_group_ids               = [
+          - "sg-082a782b6a3fc5109",
+        ] -> null
+        # (8 unchanged attributes hidden)
+
+      - capacity_reservation_specification {
+          - capacity_reservation_preference = "open" -> null
+        }
+
+      - cpu_options {
+          - core_count       = 1 -> null
+          - threads_per_core = 1 -> null
+            # (1 unchanged attribute hidden)
+        }
+
+      - credit_specification {
+          - cpu_credits = "standard" -> null
+        }
+
+      - enclave_options {
+          - enabled = false -> null
+        }
+
+      - maintenance_options {
+          - auto_recovery = "default" -> null
+        }
+
+      - metadata_options {
+          - http_endpoint               = "enabled" -> null
+          - http_protocol_ipv6          = "disabled" -> null
+          - http_put_response_hop_limit = 2 -> null
+          - http_tokens                 = "required" -> null
+          - instance_metadata_tags      = "disabled" -> null
+        }
+
+      - private_dns_name_options {
+          - enable_resource_name_dns_a_record    = false -> null
+          - enable_resource_name_dns_aaaa_record = false -> null
+          - hostname_type                        = "ip-name" -> null
+        }
+
+      - root_block_device {
+          - delete_on_termination = true -> null
+          - device_name           = "/dev/sda1" -> null
+          - encrypted             = false -> null
+          - iops                  = 3000 -> null
+          - tags                  = {} -> null
+          - tags_all              = {} -> null
+          - throughput            = 125 -> null
+          - volume_id             = "vol-01909f591260b380b" -> null
+          - volume_size           = 8 -> null
+          - volume_type           = "gp3" -> null
+            # (1 unchanged attribute hidden)
+        }
+    }
+
+  # module.resources-cloud.aws_internet_gateway.cloud_vpc_igw will be destroyed
+  - resource "aws_internet_gateway" "cloud_vpc_igw" {
+      - arn      = "arn:aws:ec2:eu-central-1:<hidden>:internet-gateway/igw-084ff74df2a318e84" -> null
+      - id       = "igw-084ff74df2a318e84" -> null
+      - owner_id = "<hidden>" -> null
+      - tags     = {
+          - "Name" = "CLOUD_VPC_IGW_dev"
+        } -> null
+      - tags_all = {
+          - "Name" = "CLOUD_VPC_IGW_dev"
+        } -> null
+      - vpc_id   = "vpc-0cb87ef7bdac04533" -> null
+    }
+
+  # module.resources-cloud.aws_network_acl.cloud_public_subnet_nacl will be destroyed
+  - resource "aws_network_acl" "cloud_public_subnet_nacl" {
+      - arn        = "arn:aws:ec2:eu-central-1:<hidden>:network-acl/acl-055b583b8a8e2fb1b" -> null
+      - egress     = [
+          - {
+              - action          = "allow"
+              - cidr_block      = "0.0.0.0/0"
+              - from_port       = 0
+              - icmp_code       = 0
+              - icmp_type       = 0
+              - protocol        = "-1"
+              - rule_no         = 100
+              - to_port         = 0
+                # (1 unchanged attribute hidden)
+            },
+        ] -> null
+      - id         = "acl-055b583b8a8e2fb1b" -> null
+      - ingress    = [
+          - {
+              - action          = "allow"
+              - cidr_block      = "0.0.0.0/0"
+              - from_port       = 0
+              - icmp_code       = 0
+              - icmp_type       = 0
+              - protocol        = "-1"
+              - rule_no         = 100
+              - to_port         = 0
+                # (1 unchanged attribute hidden)
+            },
+        ] -> null
+      - owner_id   = "<hidden>" -> null
+      - subnet_ids = [
+          - "subnet-0710ae8c4638514d1",
+        ] -> null
+      - tags       = {
+          - "Name" = "CLOUD_PUBLIC_SUBNET_NACL_dev"
+        } -> null
+      - tags_all   = {
+          - "Name" = "CLOUD_PUBLIC_SUBNET_NACL_dev"
+        } -> null
+      - vpc_id     = "vpc-0cb87ef7bdac04533" -> null
+    }
+
+  # module.resources-cloud.aws_network_acl_association.cloud_public_subnet_nacl_association will be destroyed
+  - resource "aws_network_acl_association" "cloud_public_subnet_nacl_association" {
+      - id             = "aclassoc-08183fff7290b8fd2" -> null
+      - network_acl_id = "acl-055b583b8a8e2fb1b" -> null
+      - subnet_id      = "subnet-0710ae8c4638514d1" -> null
+    }
+
+  # module.resources-cloud.aws_route_table.cloud_rt will be destroyed
+  - resource "aws_route_table" "cloud_rt" {
+      - arn              = "arn:aws:ec2:eu-central-1:<hidden>:route-table/rtb-010a95f2077b0cfb6" -> null
+      - id               = "rtb-010a95f2077b0cfb6" -> null
+      - owner_id         = "<hidden>" -> null
+      - propagating_vgws = [] -> null
+      - route            = [
+          - {
+              - cidr_block                 = "0.0.0.0/0"
+              - gateway_id                 = "igw-084ff74df2a318e84"
+                # (11 unchanged attributes hidden)
+            },
+          - {
+              - cidr_block                 = "172.21.0.0/16"
+              - vpc_peering_connection_id  = "pcx-0ffd1c1c56440e611"
+                # (11 unchanged attributes hidden)
+            },
+        ] -> null
+      - tags             = {
+          - "Name" = "CLOUD_RT_dev"
+        } -> null
+      - tags_all         = {
+          - "Name" = "CLOUD_RT_dev"
+        } -> null
+      - vpc_id           = "vpc-0cb87ef7bdac04533" -> null
+    }
+
+  # module.resources-cloud.aws_route_table_association.cloud_public_subnet_default_rt_association will be destroyed
+  - resource "aws_route_table_association" "cloud_public_subnet_default_rt_association" {
+      - id             = "rtbassoc-087f64b5ee3298524" -> null
+      - route_table_id = "rtb-010a95f2077b0cfb6" -> null
+      - subnet_id      = "subnet-0710ae8c4638514d1" -> null
+        # (1 unchanged attribute hidden)
+    }
+
+  # module.resources-cloud.aws_security_group.cluster_access will be destroyed
+  - resource "aws_security_group" "cluster_access" {
+      - arn                    = "arn:aws:ec2:eu-central-1:<hidden>:security-group/sg-082a782b6a3fc5109" -> null
+      - description            = "ICMP, HTTP, HTTPS and SSH Cluster Access" -> null
+      - egress                 = [
+          - {
+              - cidr_blocks      = [
+                  - "0.0.0.0/0",
+                ]
+              - from_port        = 0
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "-1"
+              - security_groups  = []
+              - self             = false
+              - to_port          = 0
+                # (1 unchanged attribute hidden)
+            },
+        ] -> null
+      - id                     = "sg-082a782b6a3fc5109" -> null
+      - ingress                = [
+          - {
+              - cidr_blocks      = [
+                  - "0.0.0.0/0",
+                ]
+              - from_port        = 22
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "tcp"
+              - security_groups  = []
+              - self             = false
+              - to_port          = 22
+                # (1 unchanged attribute hidden)
+            },
+          - {
+              - cidr_blocks      = [
+                  - "0.0.0.0/0",
+                ]
+              - from_port        = 443
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "tcp"
+              - security_groups  = []
+              - self             = false
+              - to_port          = 443
+                # (1 unchanged attribute hidden)
+            },
+          - {
+              - cidr_blocks      = [
+                  - "0.0.0.0/0",
+                ]
+              - from_port        = 80
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "tcp"
+              - security_groups  = []
+              - self             = false
+              - to_port          = 80
+                # (1 unchanged attribute hidden)
+            },
+          - {
+              - cidr_blocks      = [
+                  - "0.0.0.0/0",
+                ]
+              - from_port        = 8
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "icmp"
+              - security_groups  = []
+              - self             = false
+              - to_port          = 0
+                # (1 unchanged attribute hidden)
+            },
+        ] -> null
+      - name                   = "CLUSTER_ACCESS_dev" -> null
+      - owner_id               = "<hidden>" -> null
+      - revoke_rules_on_delete = false -> null
+      - tags                   = {} -> null
+      - tags_all               = {} -> null
+      - vpc_id                 = "vpc-0cb87ef7bdac04533" -> null
+        # (1 unchanged attribute hidden)
+    }
+
+  # module.resources-cloud.aws_subnet.cloud_public_subnet will be destroyed
+  - resource "aws_subnet" "cloud_public_subnet" {
+      - arn                                            = "arn:aws:ec2:eu-central-1:<hidden>:subnet/subnet-0710ae8c4638514d1" -> null
+      - assign_ipv6_address_on_creation                = false -> null
+      - availability_zone                              = "eu-central-1c" -> null
+      - availability_zone_id                           = "euc1-az1" -> null
+      - cidr_block                                     = "172.16.0.0/24" -> null
+      - enable_dns64                                   = false -> null
+      - enable_lni_at_device_index                     = 0 -> null
+      - enable_resource_name_dns_a_record_on_launch    = false -> null
+      - enable_resource_name_dns_aaaa_record_on_launch = false -> null
+      - id                                             = "subnet-0710ae8c4638514d1" -> null
+      - ipv6_native                                    = false -> null
+      - map_customer_owned_ip_on_launch                = false -> null
+      - map_public_ip_on_launch                        = true -> null
+      - owner_id                                       = "<hidden>" -> null
+      - private_dns_hostname_type_on_launch            = "ip-name" -> null
+      - tags                                           = {
+          - "Name" = "CLOUD_PUBLIC_SUBNET_dev"
+        } -> null
+      - tags_all                                       = {
+          - "Name" = "CLOUD_PUBLIC_SUBNET_dev"
+        } -> null
+      - vpc_id                                         = "vpc-0cb87ef7bdac04533" -> null
+        # (4 unchanged attributes hidden)
+    }
+
+  # module.resources-cloud.aws_vpc.cloud_vpc will be destroyed
+  - resource "aws_vpc" "cloud_vpc" {
+      - arn                                  = "arn:aws:ec2:eu-central-1:<hidden>:vpc/vpc-0cb87ef7bdac04533" -> null
+      - assign_generated_ipv6_cidr_block     = false -> null
+      - cidr_block                           = "172.16.0.0/16" -> null
+      - default_network_acl_id               = "acl-09ff16477d5257eec" -> null
+      - default_route_table_id               = "rtb-01d45ac88e11fcd6e" -> null
+      - default_security_group_id            = "sg-0caef3123ff040ae4" -> null
+      - dhcp_options_id                      = "dopt-03b9daa9c87bb1cfb" -> null
+      - enable_dns_hostnames                 = false -> null
+      - enable_dns_support                   = true -> null
+      - enable_network_address_usage_metrics = false -> null
+      - id                                   = "vpc-0cb87ef7bdac04533" -> null
+      - instance_tenancy                     = "default" -> null
+      - ipv6_netmask_length                  = 0 -> null
+      - main_route_table_id                  = "rtb-01d45ac88e11fcd6e" -> null
+      - owner_id                             = "<hidden>" -> null
+      - tags                                 = {
+          - "Name" = "CLOUD_VPC_dev"
+        } -> null
+      - tags_all                             = {
+          - "Name" = "CLOUD_VPC_dev"
+        } -> null
+        # (4 unchanged attributes hidden)
+    }
+
+  # module.resources-cloud.local_file.cluster_hosts_cfg will be destroyed
+  - resource "local_file" "cluster_hosts_cfg" {
+      - content              = <<-EOT
+            [cluster]
+            18.197.234.79
+            3.68.36.40
+            3.76.168.93
+        EOT -> null
+      - content_base64sha256 = "3rral9hfA/XrMUPzJSb/yKKDf1IWSaGOJryAKpQEDWs=" -> null
+      - content_base64sha512 = "KjSj/MMcR0+OWaJWZ+ZSahsR1MMyvVnWEpgOmFVmikpFeBK3CxJQbrzxrupFfaQ/hlVnsUdgOT2HA8T2i+yugw==" -> null
+      - content_md5          = "69abd9d5b9119d48f20c1ddb7a1918de" -> null
+      - content_sha1         = "aa2fd69491da1253590fd5f9e50626485d2be923" -> null
+      - content_sha256       = "debada97d85f03f5eb3143f32526ffc8a2837f521649a18e26bc802a94040d6b" -> null
+      - content_sha512       = "2a34a3fcc31c474f8e59a25667e6526a1b11d4c332bd59d612980e9855668a4a457812b70b12506ebcf1aeea457da43f865567b14760393d8703c4f68becae83" -> null
+      - directory_permission = "0777" -> null
+      - file_permission      = "0644" -> null
+      - filename             = "resources-cloud/hosts.cfg" -> null
+      - id                   = "aa2fd69491da1253590fd5f9e50626485d2be923" -> null
+    }
+
+  # module.resources-cloud.null_resource.run_ansible_playbook will be destroyed
+  - resource "null_resource" "run_ansible_playbook" {
+      - id = "1774601183455357234" -> null
+    }
+
+  # module.resources-onprem.aws_default_vpc.default will be destroyed
+  - resource "aws_default_vpc" "default" {
+      - arn                                  = "arn:aws:ec2:eu-central-1:<hidden>:vpc/vpc-077c402eb2331b90b" -> null
+      - assign_generated_ipv6_cidr_block     = false -> null
+      - cidr_block                           = "172.31.0.0/16" -> null
+      - default_network_acl_id               = "acl-08b5656490c0d84db" -> null
+      - default_route_table_id               = "rtb-0dc01e4972154fa9f" -> null
+      - default_security_group_id            = "sg-0291e518f1ebd38da" -> null
+      - dhcp_options_id                      = "dopt-03b9daa9c87bb1cfb" -> null
+      - enable_dns_hostnames                 = true -> null
+      - enable_dns_support                   = true -> null
+      - enable_network_address_usage_metrics = false -> null
+      - existing_default_vpc                 = true -> null
+      - force_destroy                        = false -> null
+      - id                                   = "vpc-077c402eb2331b90b" -> null
+      - instance_tenancy                     = "default" -> null
+      - ipv6_netmask_length                  = 0 -> null
+      - main_route_table_id                  = "rtb-0dc01e4972154fa9f" -> null
+      - owner_id                             = "<hidden>" -> null
+      - tags                                 = {
+          - "Name" = "DEFAULT_VPC"
+        } -> null
+      - tags_all                             = {
+          - "Name" = "DEFAULT_VPC"
+        } -> null
+        # (4 unchanged attributes hidden)
+    }
+
+  # module.resources-onprem.aws_eip.jenkins will be destroyed
+  - resource "aws_eip" "jenkins" {
+      - allocation_id            = "eipalloc-0e8d81c0e27867284" -> null
+      - arn                      = "arn:aws:ec2:eu-central-1:<hidden>:elastic-ip/eipalloc-0e8d81c0e27867284" -> null
+      - association_id           = "eipassoc-09fa7df9b2622e57f" -> null
+      - domain                   = "vpc" -> null
+      - id                       = "eipalloc-0e8d81c0e27867284" -> null
+      - instance                 = "i-085b2027992122d6f" -> null
+      - network_border_group     = "eu-central-1" -> null
+      - network_interface        = "eni-017ce662f592a8185" -> null
+      - private_dns              = "ip-172-21-0-173.eu-central-1.compute.internal" -> null
+      - private_ip               = "172.21.0.173" -> null
+      - public_dns               = "ec2-18-197-18-117.eu-central-1.compute.amazonaws.com" -> null
+      - public_ip                = "18.197.18.117" -> null
+      - public_ipv4_pool         = "amazon" -> null
+      - tags                     = {} -> null
+      - tags_all                 = {} -> null
+      - vpc                      = true -> null
+        # (4 unchanged attributes hidden)
+    }
+
+  # module.resources-onprem.aws_eip_association.jenkins will be destroyed
+  - resource "aws_eip_association" "jenkins" {
+      - allocation_id        = "eipalloc-0e8d81c0e27867284" -> null
+      - id                   = "eipassoc-09fa7df9b2622e57f" -> null
+      - instance_id          = "i-085b2027992122d6f" -> null
+      - network_interface_id = "eni-017ce662f592a8185" -> null
+      - private_ip_address   = "172.21.0.173" -> null
+      - public_ip            = "18.197.18.117" -> null
+    }
+
+  # module.resources-onprem.aws_instance.jenkins will be destroyed
+  - resource "aws_instance" "jenkins" {
+      - ami                                  = "ami-03250b0e01c28d196" -> null
+      - arn                                  = "arn:aws:ec2:eu-central-1:<hidden>:instance/i-085b2027992122d6f" -> null
+      - associate_public_ip_address          = true -> null
+      - availability_zone                    = "eu-central-1b" -> null
+      - cpu_core_count                       = 1 -> null
+      - cpu_threads_per_core                 = 1 -> null
+      - disable_api_stop                     = false -> null
+      - disable_api_termination              = false -> null
+      - ebs_optimized                        = false -> null
+      - get_password_data                    = false -> null
+      - hibernation                          = false -> null
+      - id                                   = "i-085b2027992122d6f" -> null
+      - instance_initiated_shutdown_behavior = "stop" -> null
+      - instance_state                       = "running" -> null
+      - instance_type                        = "t2.small" -> null
+      - ipv6_address_count                   = 0 -> null
+      - ipv6_addresses                       = [] -> null
+      - key_name                             = "UserPublicKey" -> null
+      - monitoring                           = false -> null
+      - placement_partition_number           = 0 -> null
+      - primary_network_interface_id         = "eni-017ce662f592a8185" -> null
+      - private_dns                          = "ip-172-21-0-173.eu-central-1.compute.internal" -> null
+      - private_ip                           = "172.21.0.173" -> null
+      - public_ip                            = "18.197.18.117" -> null
+      - secondary_private_ips                = [] -> null
+      - security_groups                      = [] -> null
+      - source_dest_check                    = true -> null
+      - subnet_id                            = "subnet-04c26aaecbf98a0df" -> null
+      - tags                                 = {
+          - "Name" = "JENKINS_dev"
+        } -> null
+      - tags_all                             = {
+          - "Name" = "JENKINS_dev"
+        } -> null
+      - tenancy                              = "default" -> null
+      - user_data_replace_on_change          = false -> null
+      - vpc_security_group_ids               = [
+          - "sg-04ee6df1559d631c2",
+        ] -> null
+        # (8 unchanged attributes hidden)
+
+      - capacity_reservation_specification {
+          - capacity_reservation_preference = "open" -> null
+        }
+
+      - cpu_options {
+          - core_count       = 1 -> null
+          - threads_per_core = 1 -> null
+            # (1 unchanged attribute hidden)
+        }
+
+      - credit_specification {
+          - cpu_credits = "standard" -> null
+        }
+
+      - enclave_options {
+          - enabled = false -> null
+        }
+
+      - maintenance_options {
+          - auto_recovery = "default" -> null
+        }
+
+      - metadata_options {
+          - http_endpoint               = "enabled" -> null
+          - http_protocol_ipv6          = "disabled" -> null
+          - http_put_response_hop_limit = 2 -> null
+          - http_tokens                 = "required" -> null
+          - instance_metadata_tags      = "disabled" -> null
+        }
+
+      - private_dns_name_options {
+          - enable_resource_name_dns_a_record    = false -> null
+          - enable_resource_name_dns_aaaa_record = false -> null
+          - hostname_type                        = "ip-name" -> null
+        }
+
+      - root_block_device {
+          - delete_on_termination = true -> null
+          - device_name           = "/dev/sda1" -> null
+          - encrypted             = false -> null
+          - iops                  = 3000 -> null
+          - tags                  = {} -> null
+          - tags_all              = {} -> null
+          - throughput            = 125 -> null
+          - volume_id             = "vol-0a2edf34dc5556f9d" -> null
+          - volume_size           = 8 -> null
+          - volume_type           = "gp3" -> null
+            # (1 unchanged attribute hidden)
+        }
+    }
+
+  # module.resources-onprem.aws_internet_gateway.onprem_vpc_igw will be destroyed
+  - resource "aws_internet_gateway" "onprem_vpc_igw" {
+      - arn      = "arn:aws:ec2:eu-central-1:<hidden>:internet-gateway/igw-00471161cc7c02d0e" -> null
+      - id       = "igw-00471161cc7c02d0e" -> null
+      - owner_id = "<hidden>" -> null
+      - tags     = {
+          - "Name" = "ONPREM_VPC_IGW_dev"
+        } -> null
+      - tags_all = {
+          - "Name" = "ONPREM_VPC_IGW_dev"
+        } -> null
+      - vpc_id   = "vpc-0ae17710076dc5a26" -> null
+    }
+
+  # module.resources-onprem.aws_network_acl.onprem_public_subnet_nacl will be destroyed
+  - resource "aws_network_acl" "onprem_public_subnet_nacl" {
+      - arn        = "arn:aws:ec2:eu-central-1:<hidden>:network-acl/acl-0e17663f0ae11927e" -> null
+      - egress     = [
+          - {
+              - action          = "allow"
+              - cidr_block      = "0.0.0.0/0"
+              - from_port       = 0
+              - icmp_code       = 0
+              - icmp_type       = 0
+              - protocol        = "-1"
+              - rule_no         = 100
+              - to_port         = 0
+                # (1 unchanged attribute hidden)
+            },
+        ] -> null
+      - id         = "acl-0e17663f0ae11927e" -> null
+      - ingress    = [
+          - {
+              - action          = "allow"
+              - cidr_block      = "0.0.0.0/0"
+              - from_port       = 0
+              - icmp_code       = 0
+              - icmp_type       = 0
+              - protocol        = "-1"
+              - rule_no         = 100
+              - to_port         = 0
+                # (1 unchanged attribute hidden)
+            },
+        ] -> null
+      - owner_id   = "<hidden>" -> null
+      - subnet_ids = [
+          - "subnet-04c26aaecbf98a0df",
+        ] -> null
+      - tags       = {
+          - "Name" = "ONPREM_PUBLIC_SUBNET_NACL_dev"
+        } -> null
+      - tags_all   = {
+          - "Name" = "ONPREM_PUBLIC_SUBNET_NACL_dev"
+        } -> null
+      - vpc_id     = "vpc-0ae17710076dc5a26" -> null
+    }
+
+  # module.resources-onprem.aws_network_acl_association.onprem_public_subnet_nacl_association will be destroyed
+  - resource "aws_network_acl_association" "onprem_public_subnet_nacl_association" {
+      - id             = "aclassoc-0421ffdc30ed43a11" -> null
+      - network_acl_id = "acl-0e17663f0ae11927e" -> null
+      - subnet_id      = "subnet-04c26aaecbf98a0df" -> null
+    }
+
+  # module.resources-onprem.aws_route_table.onprem_rt will be destroyed
+  - resource "aws_route_table" "onprem_rt" {
+      - arn              = "arn:aws:ec2:eu-central-1:<hidden>:route-table/rtb-06819f881ed2bc07d" -> null
+      - id               = "rtb-06819f881ed2bc07d" -> null
+      - owner_id         = "<hidden>" -> null
+      - propagating_vgws = [] -> null
+      - route            = [
+          - {
+              - cidr_block                 = "0.0.0.0/0"
+              - gateway_id                 = "igw-00471161cc7c02d0e"
+                # (11 unchanged attributes hidden)
+            },
+          - {
+              - cidr_block                 = "172.16.0.0/16"
+              - vpc_peering_connection_id  = "pcx-0ffd1c1c56440e611"
+                # (11 unchanged attributes hidden)
+            },
+        ] -> null
+      - tags             = {
+          - "Name" = "ONPREM_PUBLIC_SUBNET_DEFAULT_RT_dev"
+        } -> null
+      - tags_all         = {
+          - "Name" = "ONPREM_PUBLIC_SUBNET_DEFAULT_RT_dev"
+        } -> null
+      - vpc_id           = "vpc-0ae17710076dc5a26" -> null
+    }
+
+  # module.resources-onprem.aws_route_table_association.onprem_public_subnet_default_rt_association will be destroyed
+  - resource "aws_route_table_association" "onprem_public_subnet_default_rt_association" {
+      - id             = "rtbassoc-00b82b7e367749bd0" -> null
+      - route_table_id = "rtb-06819f881ed2bc07d" -> null
+      - subnet_id      = "subnet-04c26aaecbf98a0df" -> null
+        # (1 unchanged attribute hidden)
+    }
+
+  # module.resources-onprem.aws_security_group.jenkins_access will be destroyed
+  - resource "aws_security_group" "jenkins_access" {
+      - arn                    = "arn:aws:ec2:eu-central-1:<hidden>:security-group/sg-04ee6df1559d631c2" -> null
+      - description            = "ICMP, HTTP and SSH Jenkins Access" -> null
+      - egress                 = [
+          - {
+              - cidr_blocks      = [
+                  - "0.0.0.0/0",
+                ]
+              - from_port        = 0
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "-1"
+              - security_groups  = []
+              - self             = false
+              - to_port          = 0
+                # (1 unchanged attribute hidden)
+            },
+        ] -> null
+      - id                     = "sg-04ee6df1559d631c2" -> null
+      - ingress                = [
+          - {
+              - cidr_blocks      = [
+                  - "0.0.0.0/0",
+                ]
+              - from_port        = 22
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "tcp"
+              - security_groups  = []
+              - self             = false
+              - to_port          = 22
+                # (1 unchanged attribute hidden)
+            },
+          - {
+              - cidr_blocks      = [
+                  - "0.0.0.0/0",
+                ]
+              - from_port        = 8080
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "tcp"
+              - security_groups  = []
+              - self             = false
+              - to_port          = 8080
+                # (1 unchanged attribute hidden)
+            },
+          - {
+              - cidr_blocks      = [
+                  - "0.0.0.0/0",
+                ]
+              - from_port        = 8
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "icmp"
+              - security_groups  = []
+              - self             = false
+              - to_port          = 0
+                # (1 unchanged attribute hidden)
+            },
+        ] -> null
+      - name                   = "JENKINS_ACCESS_dev" -> null
+      - owner_id               = "<hidden>" -> null
+      - revoke_rules_on_delete = false -> null
+      - tags                   = {} -> null
+      - tags_all               = {} -> null
+      - vpc_id                 = "vpc-0ae17710076dc5a26" -> null
+        # (1 unchanged attribute hidden)
+    }
+
+  # module.resources-onprem.aws_subnet.onprem_public_subnet will be destroyed
+  - resource "aws_subnet" "onprem_public_subnet" {
+      - arn                                            = "arn:aws:ec2:eu-central-1:<hidden>:subnet/subnet-04c26aaecbf98a0df" -> null
+      - assign_ipv6_address_on_creation                = false -> null
+      - availability_zone                              = "eu-central-1b" -> null
+      - availability_zone_id                           = "euc1-az3" -> null
+      - cidr_block                                     = "172.21.0.0/24" -> null
+      - enable_dns64                                   = false -> null
+      - enable_lni_at_device_index                     = 0 -> null
+      - enable_resource_name_dns_a_record_on_launch    = false -> null
+      - enable_resource_name_dns_aaaa_record_on_launch = false -> null
+      - id                                             = "subnet-04c26aaecbf98a0df" -> null
+      - ipv6_native                                    = false -> null
+      - map_customer_owned_ip_on_launch                = false -> null
+      - map_public_ip_on_launch                        = true -> null
+      - owner_id                                       = "<hidden>" -> null
+      - private_dns_hostname_type_on_launch            = "ip-name" -> null
+      - tags                                           = {
+          - "Name" = "ONPREM_PUBLIC_SUBNET_dev"
+        } -> null
+      - tags_all                                       = {
+          - "Name" = "ONPREM_PUBLIC_SUBNET_dev"
+        } -> null
+      - vpc_id                                         = "vpc-0ae17710076dc5a26" -> null
+        # (4 unchanged attributes hidden)
+    }
+
+  # module.resources-onprem.aws_vpc.onprem_vpc will be destroyed
+  - resource "aws_vpc" "onprem_vpc" {
+      - arn                                  = "arn:aws:ec2:eu-central-1:<hidden>:vpc/vpc-0ae17710076dc5a26" -> null
+      - assign_generated_ipv6_cidr_block     = false -> null
+      - cidr_block                           = "172.21.0.0/16" -> null
+      - default_network_acl_id               = "acl-0206824f2e0279617" -> null
+      - default_route_table_id               = "rtb-08d367105c5417eae" -> null
+      - default_security_group_id            = "sg-0eb0b7f61108c324a" -> null
+      - dhcp_options_id                      = "dopt-03b9daa9c87bb1cfb" -> null
+      - enable_dns_hostnames                 = false -> null
+      - enable_dns_support                   = true -> null
+      - enable_network_address_usage_metrics = false -> null
+      - id                                   = "vpc-0ae17710076dc5a26" -> null
+      - instance_tenancy                     = "default" -> null
+      - ipv6_netmask_length                  = 0 -> null
+      - main_route_table_id                  = "rtb-08d367105c5417eae" -> null
+      - owner_id                             = "<hidden>" -> null
+      - tags                                 = {
+          - "Name" = "ONPREM_VPC_dev"
+        } -> null
+      - tags_all                             = {
+          - "Name" = "ONPREM_VPC_dev"
+        } -> null
+        # (4 unchanged attributes hidden)
+    }
+
+  # module.resources-onprem.local_file.jenkins_hosts_cfg will be destroyed
+  - resource "local_file" "jenkins_hosts_cfg" {
+      - content              = <<-EOT
+            [jenkins]
+            18.197.18.117
+        EOT -> null
+      - content_base64sha256 = "8PrF5P58jQbjMWHctcsbE+1kCK4dDBuWadpLBSnT2ws=" -> null
+      - content_base64sha512 = "O1TnYNE4BXlv6WmzjhYYIApgsSECz6To+X3/ffnDioYE0QHGl7erNiBbXwVfr+VToOzEKxgom1KiTxPcHQIdTA==" -> null
+      - content_md5          = "6bdd56a5bc2c5f99d91c84e927f639a6" -> null
+      - content_sha1         = "922ec2d751678cb08e2f50ed6191141e0b11df91" -> null
+      - content_sha256       = "f0fac5e4fe7c8d06e33161dcb5cb1b13ed6408ae1d0c1b9669da4b0529d3db0b" -> null
+      - content_sha512       = "3b54e760d13805796fe969b38e1618200a60b12102cfa4e8f97dff7df9c38a8604d101c697b7ab36205b5f055fafe553a0ecc42b18289b52a24f13dc1d021d4c" -> null
+      - directory_permission = "0777" -> null
+      - file_permission      = "0644" -> null
+      - filename             = "resources-onprem/hosts.cfg" -> null
+      - id                   = "922ec2d751678cb08e2f50ed6191141e0b11df91" -> null
+    }
+
+  # module.resources-onprem.null_resource.run_ansible_playbook will be destroyed
+  - resource "null_resource" "run_ansible_playbook" {
+      - id = "7813338176761783491" -> null
+    }
+
+Plan: 0 to add, 0 to change, 38 to destroy.
+
+Changes to Outputs:
+  - vpc_peering_connection_id = "pcx-0ffd1c1c56440e611" -> null
+
+Do you really want to destroy all resources in workspace "dev"?
+  Terraform will destroy all your managed infrastructure, as shown above.
+  There is no undo. Only 'yes' will be accepted to confirm.
+
+  Enter a value: yes
+
+module.resources-onprem.null_resource.run_ansible_playbook: Destroying... [id=7813338176761783491]
+module.resources-cloud.null_resource.run_ansible_playbook: Destroying... [id=1774601183455357234]
+module.resources-onprem.null_resource.run_ansible_playbook: Destruction complete after 0s
+module.resources-cloud.null_resource.run_ansible_playbook: Destruction complete after 0s
+module.resources-onprem.local_file.jenkins_hosts_cfg: Destroying... [id=922ec2d751678cb08e2f50ed6191141e0b11df91]
+module.resources-onprem.local_file.jenkins_hosts_cfg: Destruction complete after 0s
+module.resources-cloud.local_file.cluster_hosts_cfg: Destroying... [id=aa2fd69491da1253590fd5f9e50626485d2be923]
+module.resources-cloud.local_file.cluster_hosts_cfg: Destruction complete after 0s
+module.resources-cloud.aws_network_acl_association.cloud_public_subnet_nacl_association: Destroying... [id=aclassoc-08183fff7290b8fd2]
+aws_key_pair.tf_key: Destroying... [id=UserPublicKey]
+module.resources-cloud.aws_eip_association.cluster[0]: Destroying... [id=eipassoc-0d965fb543a464d7e]
+module.resources-cloud.aws_eip_association.cluster[2]: Destroying... [id=eipassoc-072ec80b5dfab9a72]
+module.resources-onprem.aws_route_table_association.onprem_public_subnet_default_rt_association: Destroying... [id=rtbassoc-00b82b7e367749bd0]
+module.resources-cloud.aws_eip_association.cluster[1]: Destroying... [id=eipassoc-05e300e22bfcfd14e]
+aws_kms_key.vault: Destroying... [id=a6f77c16-1e47-4e96-bf8c-26dc8c4df1ea]
+aws_route.route_2_onprem: Destroying... [id=r-rtb-010a95f2077b0cfb64073482484]
+aws_route.route_2_cloud: Destroying... [id=r-rtb-06819f881ed2bc07d3246677288]
+module.resources-onprem.aws_default_vpc.default: Destroying... [id=vpc-077c402eb2331b90b]
+module.resources-onprem.aws_default_vpc.default: Destruction complete after 0s
+module.resources-onprem.aws_network_acl_association.onprem_public_subnet_nacl_association: Destroying... [id=aclassoc-0421ffdc30ed43a11]
+aws_kms_key.vault: Destruction complete after 0s
+module.resources-cloud.aws_route_table_association.cloud_public_subnet_default_rt_association: Destroying... [id=rtbassoc-087f64b5ee3298524]
+aws_key_pair.tf_key: Destruction complete after 1s
+module.resources-onprem.aws_eip_association.jenkins: Destroying... [id=eipassoc-09fa7df9b2622e57f]
+module.resources-onprem.aws_route_table_association.onprem_public_subnet_default_rt_association: Destruction complete after 1s
+module.resources-cloud.aws_route_table_association.cloud_public_subnet_default_rt_association: Destruction complete after 1s
+module.resources-onprem.aws_network_acl_association.onprem_public_subnet_nacl_association: Destruction complete after 1s
+module.resources-onprem.aws_network_acl.onprem_public_subnet_nacl: Destroying... [id=acl-0e17663f0ae11927e]
+module.resources-cloud.aws_network_acl_association.cloud_public_subnet_nacl_association: Destruction complete after 1s
+module.resources-cloud.aws_network_acl.cloud_public_subnet_nacl: Destroying... [id=acl-055b583b8a8e2fb1b]
+aws_route.route_2_cloud: Destruction complete after 1s
+module.resources-onprem.aws_route_table.onprem_rt: Destroying... [id=rtb-06819f881ed2bc07d]
+aws_route.route_2_onprem: Destruction complete after 1s
+aws_vpc_peering_connection.onprem_2_cloud_vpc_peering: Destroying... [id=pcx-0ffd1c1c56440e611]
+module.resources-cloud.aws_route_table.cloud_rt: Destroying... [id=rtb-010a95f2077b0cfb6]
+module.resources-onprem.aws_network_acl.onprem_public_subnet_nacl: Destruction complete after 0s
+module.resources-cloud.aws_network_acl.cloud_public_subnet_nacl: Destruction complete after 0s
+aws_vpc_peering_connection.onprem_2_cloud_vpc_peering: Destruction complete after 0s
+module.resources-onprem.aws_route_table.onprem_rt: Destruction complete after 0s
+module.resources-onprem.aws_internet_gateway.onprem_vpc_igw: Destroying... [id=igw-00471161cc7c02d0e]
+module.resources-cloud.aws_route_table.cloud_rt: Destruction complete after 0s
+module.resources-cloud.aws_internet_gateway.cloud_vpc_igw: Destroying... [id=igw-084ff74df2a318e84]
+module.resources-cloud.aws_eip_association.cluster[1]: Destruction complete after 1s
+module.resources-cloud.aws_eip_association.cluster[2]: Destruction complete after 2s
+module.resources-cloud.aws_eip_association.cluster[0]: Destruction complete after 2s
+module.resources-cloud.aws_eip.cluster[1]: Destroying... [id=eipalloc-0918035574d712a58]
+module.resources-cloud.aws_eip.cluster[0]: Destroying... [id=eipalloc-0ff8542d2d044ee94]
+module.resources-cloud.aws_eip.cluster[2]: Destroying... [id=eipalloc-0667e1349983b7c57]
+module.resources-onprem.aws_eip_association.jenkins: Destruction complete after 1s
+module.resources-onprem.aws_eip.jenkins: Destroying... [id=eipalloc-0e8d81c0e27867284]
+module.resources-cloud.aws_eip.cluster[0]: Destruction complete after 1s
+module.resources-cloud.aws_eip.cluster[2]: Destruction complete after 1s
+module.resources-cloud.aws_eip.cluster[1]: Destruction complete after 1s
+module.resources-cloud.aws_instance.cluster[2]: Destroying... [id=i-089125ca29c163dfd]
+module.resources-cloud.aws_instance.cluster[0]: Destroying... [id=i-0adb5261468883062]
+module.resources-cloud.aws_instance.cluster[1]: Destroying... [id=i-01bbb6d1ac1c07a36]
+module.resources-onprem.aws_eip.jenkins: Destruction complete after 1s
+module.resources-onprem.aws_instance.jenkins: Destroying... [id=i-085b2027992122d6f]
+module.resources-onprem.aws_internet_gateway.onprem_vpc_igw: Still destroying... [id=igw-00471161cc7c02d0e, 10s elapsed]
+module.resources-cloud.aws_internet_gateway.cloud_vpc_igw: Still destroying... [id=igw-084ff74df2a318e84, 10s elapsed]
+module.resources-cloud.aws_instance.cluster[2]: Still destroying... [id=i-089125ca29c163dfd, 10s elapsed]
+module.resources-cloud.aws_instance.cluster[0]: Still destroying... [id=i-0adb5261468883062, 10s elapsed]
+module.resources-cloud.aws_instance.cluster[1]: Still destroying... [id=i-01bbb6d1ac1c07a36, 10s elapsed]
+module.resources-onprem.aws_instance.jenkins: Still destroying... [id=i-085b2027992122d6f, 10s elapsed]
+module.resources-onprem.aws_internet_gateway.onprem_vpc_igw: Still destroying... [id=igw-00471161cc7c02d0e, 20s elapsed]
+module.resources-cloud.aws_internet_gateway.cloud_vpc_igw: Still destroying... [id=igw-084ff74df2a318e84, 20s elapsed]
+module.resources-cloud.aws_instance.cluster[0]: Still destroying... [id=i-0adb5261468883062, 20s elapsed]
+module.resources-cloud.aws_instance.cluster[2]: Still destroying... [id=i-089125ca29c163dfd, 20s elapsed]
+module.resources-cloud.aws_instance.cluster[1]: Still destroying... [id=i-01bbb6d1ac1c07a36, 20s elapsed]
+module.resources-onprem.aws_instance.jenkins: Still destroying... [id=i-085b2027992122d6f, 20s elapsed]
+module.resources-onprem.aws_internet_gateway.onprem_vpc_igw: Destruction complete after 27s
+module.resources-cloud.aws_internet_gateway.cloud_vpc_igw: Still destroying... [id=igw-084ff74df2a318e84, 30s elapsed]
+module.resources-cloud.aws_instance.cluster[2]: Still destroying... [id=i-089125ca29c163dfd, 30s elapsed]
+module.resources-cloud.aws_instance.cluster[0]: Still destroying... [id=i-0adb5261468883062, 30s elapsed]
+module.resources-cloud.aws_instance.cluster[1]: Still destroying... [id=i-01bbb6d1ac1c07a36, 30s elapsed]
+module.resources-onprem.aws_instance.jenkins: Still destroying... [id=i-085b2027992122d6f, 30s elapsed]
+module.resources-onprem.aws_instance.jenkins: Destruction complete after 30s
+module.resources-onprem.aws_subnet.onprem_public_subnet: Destroying... [id=subnet-04c26aaecbf98a0df]
+module.resources-onprem.aws_security_group.jenkins_access: Destroying... [id=sg-04ee6df1559d631c2]
+module.resources-onprem.aws_subnet.onprem_public_subnet: Destruction complete after 1s
+module.resources-onprem.aws_security_group.jenkins_access: Destruction complete after 1s
+module.resources-onprem.aws_vpc.onprem_vpc: Destroying... [id=vpc-0ae17710076dc5a26]
+module.resources-onprem.aws_vpc.onprem_vpc: Destruction complete after 1s
+module.resources-cloud.aws_internet_gateway.cloud_vpc_igw: Still destroying... [id=igw-084ff74df2a318e84, 40s elapsed]
+module.resources-cloud.aws_instance.cluster[0]: Still destroying... [id=i-0adb5261468883062, 40s elapsed]
+module.resources-cloud.aws_instance.cluster[2]: Still destroying... [id=i-089125ca29c163dfd, 40s elapsed]
+module.resources-cloud.aws_instance.cluster[1]: Still destroying... [id=i-01bbb6d1ac1c07a36, 40s elapsed]
+module.resources-cloud.aws_internet_gateway.cloud_vpc_igw: Still destroying... [id=igw-084ff74df2a318e84, 50s elapsed]
+module.resources-cloud.aws_instance.cluster[2]: Still destroying... [id=i-089125ca29c163dfd, 50s elapsed]
+module.resources-cloud.aws_instance.cluster[0]: Still destroying... [id=i-0adb5261468883062, 50s elapsed]
+module.resources-cloud.aws_instance.cluster[1]: Still destroying... [id=i-01bbb6d1ac1c07a36, 50s elapsed]
+module.resources-cloud.aws_internet_gateway.cloud_vpc_igw: Still destroying... [id=igw-084ff74df2a318e84, 1m0s elapsed]
+module.resources-cloud.aws_instance.cluster[0]: Still destroying... [id=i-0adb5261468883062, 1m0s elapsed]
+module.resources-cloud.aws_instance.cluster[2]: Still destroying... [id=i-089125ca29c163dfd, 1m0s elapsed]
+module.resources-cloud.aws_instance.cluster[1]: Still destroying... [id=i-01bbb6d1ac1c07a36, 1m0s elapsed]
+module.resources-cloud.aws_instance.cluster[0]: Destruction complete after 1m1s
+module.resources-cloud.aws_internet_gateway.cloud_vpc_igw: Still destroying... [id=igw-084ff74df2a318e84, 1m10s elapsed]
+module.resources-cloud.aws_instance.cluster[2]: Still destroying... [id=i-089125ca29c163dfd, 1m10s elapsed]
+module.resources-cloud.aws_instance.cluster[1]: Still destroying... [id=i-01bbb6d1ac1c07a36, 1m10s elapsed]
+module.resources-cloud.aws_instance.cluster[2]: Destruction complete after 1m11s
+module.resources-cloud.aws_internet_gateway.cloud_vpc_igw: Destruction complete after 1m18s
+module.resources-cloud.aws_instance.cluster[1]: Still destroying... [id=i-01bbb6d1ac1c07a36, 1m20s elapsed]
+module.resources-cloud.aws_instance.cluster[1]: Destruction complete after 1m21s
+module.resources-cloud.aws_subnet.cloud_public_subnet: Destroying... [id=subnet-0710ae8c4638514d1]
+module.resources-cloud.aws_security_group.cluster_access: Destroying... [id=sg-082a782b6a3fc5109]
+module.resources-cloud.aws_subnet.cloud_public_subnet: Destruction complete after 0s
+module.resources-cloud.aws_security_group.cluster_access: Destruction complete after 0s
+module.resources-cloud.aws_vpc.cloud_vpc: Destroying... [id=vpc-0cb87ef7bdac04533]
+module.resources-cloud.aws_vpc.cloud_vpc: Destruction complete after 1s
+
+Destroy complete! Resources: 38 destroyed.

@@ -1,5 +1,5 @@
 storage "consul" {
-  address = "127.0.0.1:8500"
+  address = "{{ ansible_default_ipv4.address|default(ansible_all_ipv4_addresses[0]) }}:8500"
   path    = "vault/"
 }
 
@@ -8,8 +8,8 @@ listener "tcp" {
   tls_disable = 1
 }
 
-api_addr = "http://{{ ansible_host }}:8200"
-cluster_addr = "http://{{ ansible_host }}:8201"
+api_addr = "http://{{ ansible_default_ipv4.address|default(ansible_all_ipv4_addresses[0]) }}:8200"
+cluster_addr = "http://{{ ansible_default_ipv4.address|default(ansible_all_ipv4_addresses[0]) }}:8201"
 
 seal "awskms" {
   region = "eu-central-1"

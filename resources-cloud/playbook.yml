@@ -12,9 +12,13 @@
         sleep: 10
         timeout: 300
 
+    - name: Gathering facts
+      setup:
+
     - name: Install dependencies and some optional apps
       apt:
         name:
+          - git
           - curl
           - unzip
           - gnupg
@@ -33,7 +37,7 @@
 
     - name: Add HashiCorp Repo
       apt_repository:
-        repo: "deb [arch=amd64] https://apt.releases.hashicorp.com stable main"
+        repo: "deb [arch=amd64] https://apt.releases.hashicorp.com noble main"
         state: present
 
     - name: Add Docker Repo GPG key
@@ -55,57 +59,57 @@
           - docker-ce
         state: present
 
-    - name: Ensure Docker is enabled and running
-      systemd:
-        name: docker
-        state: started
-        enabled: true
-
-    - name: Ensure Consul is started and enabled
-      systemd:
-        name: consul
-        state: started
-        enabled: true
-
-    - name: Ensure Nomad is started and enabled
-      systemd:
-        name: nomad
-        state: started
-        enabled: true
-
-    - name: Ensure Vault is started and enabled
-      systemd:
-        name: vault
-        state: started
-        enabled: true
-
     - name: Configure Consul as a server
       template:
         src: "consul-server.hcl.j2"
         dest: "/etc/consul.d/consul.hcl"
-      notify:
-        - restart consul
+#      notify:
+#        - restart consul
 
     - name: Configure Nomad as a server
       template:
         src: "nomad-server.hcl.j2"
         dest: "/etc/nomad.d/nomad.hcl"
-      notify:
-        - restart nomad
+#      notify:
+#        - restart nomad
 
     - name: Configure Vault as a server
       template:
         src: "vault-server.hcl.j2"
         dest: "/etc/vault.d/vault.hcl"
-      notify:
-        - restart vault
+#      notify:
+#        - restart vault
 
-    - name: Wait for Vault to be ready
-      uri:
-        url: "http://127.0.0.1:8200/v1/sys/health"
-        status_code: 200
-        method: GET
-        register: result
-        retries: 10
-        delay: 10
-      until: result.status == 200
+#    - name: Ensure Docker is enabled and running
+#      systemd:
+#        name: docker
+#        state: started
+#        enabled: true
+
+#    - name: Ensure Consul is started and enabled
+#      systemd:
+#        name: consul
+#        state: started
+#        enabled: true
+
+#    - name: Ensure Nomad is started and enabled
+#      systemd:
+#        name: nomad
+#        state: started
+#        enabled: true
+
+#    - name: Ensure Vault is started and enabled
+#      systemd:
+#        name: vault
+#        state: started
+#        enabled: true
+ 
+#    - name: Wait for Vault to be ready
+#      uri:
+#        url: "http://127.0.0.1:8200/v1/sys/health"
+#        status_code: 200
+#        method: GET
+#        register: result
+#        retries: 10
+#        delay: 10
+#      until: result.status == 200

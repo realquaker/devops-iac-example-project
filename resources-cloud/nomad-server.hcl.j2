@@ -1,9 +1,9 @@
-datacenter = "dc1"
+datacenter = "cloud-datacenter"
 data_dir = "/opt/nomad/data"
-bind_addr = "{{ ansible_host }}"
+bind_addr = "{{ ansible_default_ipv4.address|default(ansible_all_ipv4_addresses[0]) }}"
 server = true
 bootstrap_expect = 3
-retry_join = ["{{ hostvars['node1']['ansible_host'] }}", "{{ hostvars['node2']['ansible_host'] }}", "{{ hostvars['node3']['ansible_host'] }}"]
+retry_join = ["{{ groups['cluster'][0] }}", "{{ groups['cluster'][1] }}", "{{ groups['cluster'][2] }}"]
 consul = {
-  address = "127.0.0.1:8500"
+  address = "{{ ansible_default_ipv4.address|default(ansible_all_ipv4_addresses[0]) }}:8500"
 }

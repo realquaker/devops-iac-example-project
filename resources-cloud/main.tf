@@ -2,11 +2,11 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
 
 locals {
-  # Using Workspaces is just as an example of how to separate envirinments.
+  # Using Workspaces is just as an example of how to separate environments.
   # This feature is not fully implemented.
   instance_type   = terraform.workspace == "prod" ? "t2.large" : "t2.small"
   count           = terraform.workspace == "prod" ? 5 : 3
-  ansible_env     = "ANSIBLE_HOST_KEY_CHECKING=False"
+  ansible_env     = "ANSIBLE_HOST_KEY_CHECKING=False ANSIBLE_PYTHON_INTERPRETER=auto_silent"
   playbook        = "playbook.yml"
   inventory       = "hosts.cfg"
   private_key     = "${var.ssh_private_key}"
@@ -29,7 +29,7 @@ resource "aws_internet_gateway" "cloud_vpc_igw" {
 
 resource "aws_subnet" "cloud_public_subnet" {
   vpc_id                  = aws_vpc.cloud_vpc.id
-  cidr_block              = "172.16.128.0/20"
+  cidr_block              = "172.16.0.0/24"
   availability_zone       = "eu-central-1c"
   map_public_ip_on_launch = true
 
@@ -70,7 +70,7 @@ resource "aws_network_acl_association" "cloud_public_subnet_nacl_association" {
   subnet_id      = aws_subnet.cloud_public_subnet.id
 }
 
-resource "aws_route_table" "cloud_public_subnet_default_rt" {
+resource "aws_route_table" "cloud_rt" {
   vpc_id = aws_vpc.cloud_vpc.id
 
   route {
@@ -79,19 +79,26 @@ resource "aws_route_table" "cloud_public_subnet_default_rt" {
   }
 
   tags = {
-    Name = format("%s_%s", "CLOUD_PUBLIC_SUBNET_DEFAULT_RT", terraform.workspace)
+    Name = format("%s_%s", "CLOUD_RT", terraform.workspace)
   }
 }
 
 resource "aws_route_table_association" "cloud_public_subnet_default_rt_association" {
-  route_table_id = aws_route_table.cloud_public_subnet_default_rt.id
+  route_table_id = aws_route_table.cloud_rt.id
   subnet_id      = aws_subnet.cloud_public_subnet.id
 }
 
 resource "aws_security_group" "cluster_access" {
   vpc_id      = aws_vpc.cloud_vpc.id
-  description = "HTTP, HTTPS and SSH Cluster Access"
+  description = "ICMP, HTTP, HTTPS and SSH Cluster Access"
   name        = format("%s_%s", "CLUSTER_ACCESS", terraform.workspace)
+
+  ingress {
+    from_port   = "8"
+    to_port     = "0"
+    protocol    = "icmp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
   ingress {
     from_port   = "22"

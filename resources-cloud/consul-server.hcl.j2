@@ -1,7 +1,8 @@
-datacenter = "dc1"
-data_dir = "/opt/consul/data"
-bind_addr = "{{ ansible_host }}"
-server = true
-bootstrap_expect = 3
-retry_join = ["{{ hostvars['node1']['ansible_host'] }}", "{{ hostvars['node2']['ansible_host'] }}", "{{ hostvars['node3']['ansible_host'] }}"]
-ui = true
+datacenter          = "cloud-datacenter"
+data_dir            = "/opt/consul/data"
+bind_addr           = "0.0.0.0"
+advertise_addr      = "{{ ansible_default_ipv4.address|default(ansible_all_ipv4_addresses[0]) }}"
+server              = true
+bootstrap_expect    = 3
+retry_join          = ["{{ groups['cluster'][0] }}", "{{ groups['cluster'][1] }}", "{{ groups['cluster'][2] }}"]
+ui                  = true

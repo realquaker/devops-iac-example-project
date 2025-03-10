@@ -17,9 +17,12 @@ output "cluster_server_primary_ip" {
   value = aws_instance.cluster[*].public_ip
 }
 
-
 output "cluster_server_private_ip" {
   value = aws_instance.cluster[*].private_ip
+}
+
+output "cloud_rt_id" {
+  value = aws_route_table.cloud_rt.id
 }
 
 # End.

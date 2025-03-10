@@ -3,6 +3,11 @@
   hosts: jenkins
   gather_facts: no
   become: true
+  vars:
+    jenkins_admin_name: "butler"
+    jenkins_admin_pass: "um9beed0vua7aeZi"
+    jenkins_plugins:    ['app_server', 'other_app_server']
+    pip_required_roles: ['some_server', 'other_server']
   tasks:
 
     - name: Wait 300 seconds, but only start checking after 30 seconds
@@ -12,9 +17,10 @@
         sleep: 10
         timeout: 300
 
-    - name: Install deps for Jenkins and Docker
+    - name: Install dependencies and some optional apps
       apt:
         name:
+          - git
           - curl
           - unzip
           - gnupg
@@ -67,3 +73,59 @@
         name: docker
         state: started
         enabled: true
+    
+    - name: Retrieve Jenkins unlock code
+      shell: "cat /var/lib/jenkins/secrets/initialAdminPassword"
+      register: jenkins_unlock_code
+    
+    - debug: msg="Jenkins unlock code (install admin password) is {{ jenkins_unlock_code.stdout }}"
+
+    - name: Unlock Jenkins and add main admin user
+      jenkins_script:
+        script: |
+          import hudson.security.*
+          import jenkins.model.*
+          def instance = Jenkins.getInstance()
+          def hudsonRealm = new HudsonPrivateSecurityRealm(false)
+          def users = hudsonRealm.getAllUsers()
+          users_s = users.collect { it.toString() }
+          if ("{{ jenkins_admin_name }}" in users_s) {
+          println "Admin user already exists - updating password"
+          def user = hudson.model.User.get('{{ jenkins_admin_name }}');
+          def password = hudson.security.HudsonPrivateSecurityRealm.Details.fromPlainPassword('{{ jenkins_admin_pass }}')
+          user.addProperty(password)
+          user.save()
+          }
+          else {
+          println "Creating local admin user"
+          hudsonRealm.createAccount('{{ jenkins_admin_name }}', '{{ jenkins_admin_pass }}')
+          instance.setSecurityRealm(hudsonRealm)
+          def strategy = new FullControlOnceLoggedInAuthorizationStrategy()
+          instance.setAuthorizationStrategy(strategy)
+          instance.save()
+          }
+#        args:
+#          user_name: "{{ jenkins_admin_name }}"
+#          user_pwd: "{{ jenkins_admin_pass }}"
+        user: admin
+        password: "{{ jenkins_unlock_code.stdout }}"
+
+    - name: complete setup wizard
+      jenkins_script:
+        script: |
+          import static jenkins.model.Jenkins.instance as jenkins
+          import jenkins.install.InstallState
+          if (!jenkins.installState.isSetupComplete()) {
+            InstallState.INITIAL_SETUP_COMPLETED.initializeState()
+          }
+        user: admin
+        password: "{{ jenkins_unlock_code.stdout }}"
+
+#    - name: install plugin
+#      jenkins_plugin:
+#        name: "{{ item }}"
+#        state: latest
+#        url_username: admin
+#        url_password: "{{ jenkins_unlock_code.stdout }}"
+#        with_items: "{{ jenkins_plugins }}"
+
